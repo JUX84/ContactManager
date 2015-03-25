@@ -7,6 +7,9 @@ package m1.pi;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import org.openide.DialogDescriptor;
+import org.openide.DialogDisplayer;
+import org.openide.NotifyDescriptor;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
 import org.openide.awt.ActionRegistration;
@@ -26,6 +29,7 @@ public final class ClearAction implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO implement action body
+        if ((Integer) DialogDisplayer.getDefault().notify(new DialogDescriptor.Confirmation("Êtes-vous sûr de vouloir supprimer tous les contacts ?", DialogDescriptor.OK_CANCEL_OPTION)) == 0)
+            DialogDisplayer.getDefault().notify(new NotifyDescriptor.Message("Tous les contacts vont être supprimés", NotifyDescriptor.WARNING_MESSAGE));
     }
 }

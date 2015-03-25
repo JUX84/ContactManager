@@ -26,6 +26,6 @@ public final class NewAction implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO implement action body
+        new ContactFormWizardAction().actionPerformed(e);
     }
 }

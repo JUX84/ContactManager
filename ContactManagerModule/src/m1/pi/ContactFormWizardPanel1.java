@@ -40,7 +40,9 @@ public class ContactFormWizardPanel1 implements WizardDescriptor.Panel<WizardDes
     @Override
     public boolean isValid() {
         // If it is always OK to press Next or Finish, then:
-        return true;
+        if (component == null)
+            return false;
+        return component.isOk();
         // If it depends on some condition (form filled out...) and
         // this condition changes (last form field filled in...) then
         // use ChangeSupport to implement add/removeChangeListener below.

@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JComponent;
 import org.openide.DialogDisplayer;
+import org.openide.NotifyDescriptor;
 import org.openide.WizardDescriptor;
 import org.openide.awt.ActionID;
 import org.openide.awt.ActionReference;
@@ -47,9 +48,10 @@ public final class ContactFormWizardAction implements ActionListener {
         // {0} will be replaced by WizardDesriptor.Panel.getComponent().getName()
         wiz.setTitleFormat(new MessageFormat("{0}"));
         wiz.setTitle("Add new contact");
+        System.out.println(((ContactFormVisualPanel1) panels.get(0).getComponent()).isOk());
         if (DialogDisplayer.getDefault().notify(wiz) == WizardDescriptor.FINISH_OPTION) {
-            // do something
+            if(!((ContactFormVisualPanel1) panels.get(0).getComponent()).isOk())
+                DialogDisplayer.getDefault().notify(new NotifyDescriptor.Message("The fields:\n\t- First name\n\t- Last name\n\t- Age\nMUST be filled.", NotifyDescriptor.ERROR_MESSAGE));
         }
     }
-
 }

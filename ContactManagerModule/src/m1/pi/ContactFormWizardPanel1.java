@@ -7,9 +7,10 @@ package m1.pi;
 
 import javax.swing.event.ChangeListener;
 import org.openide.WizardDescriptor;
+import org.openide.WizardValidationException;
 import org.openide.util.HelpCtx;
 
-public class ContactFormWizardPanel1 implements WizardDescriptor.Panel<WizardDescriptor> {
+public class ContactFormWizardPanel1 implements WizardDescriptor.ValidatingPanel<WizardDescriptor> {
 
     /**
      * The visual component that displays this panel. If you need to access the
@@ -40,9 +41,7 @@ public class ContactFormWizardPanel1 implements WizardDescriptor.Panel<WizardDes
     @Override
     public boolean isValid() {
         // If it is always OK to press Next or Finish, then:
-        if (component == null)
-            return false;
-        return component.isOk();
+        return true;
         // If it depends on some condition (form filled out...) and
         // this condition changes (last form field filled in...) then
         // use ChangeSupport to implement add/removeChangeListener below.
@@ -65,6 +64,12 @@ public class ContactFormWizardPanel1 implements WizardDescriptor.Panel<WizardDes
     @Override
     public void storeSettings(WizardDescriptor wiz) {
         // use wiz.putProperty to remember current panel state
+    }
+
+    @Override
+    public void validate() throws WizardValidationException {
+        if (!component.isOk())
+            throw new WizardValidationException(null, "First name, last name and age MUST be filled.", null);
     }
 
 }

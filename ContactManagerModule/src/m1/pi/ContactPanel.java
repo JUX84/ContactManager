@@ -29,20 +29,13 @@ public class ContactPanel extends javax.swing.JPanel {
             @Override
             public void synced(Binding binding)
             {
-                JTextField textField = (JTextField)binding.getTargetObject();
-                textField.setForeground(UIManager.getColor("Textfield.foreground"));
-                textField.setToolTipText("");
             }
             @Override
             public void syncFailed(Binding binding, Binding.SyncFailure failure)
             {
-                JTextField textField = (JTextField)binding.getTargetObject();
-                Validator.Result result = failure.getValidationResult();
-                textField.setForeground(Color.red);
-                textField.setToolTipText(result!=null?result.getDescription():"Sync failed");
             }
         } ;
-        bindingGroup.addBindingListener( bindingListener );
+        bindingGroup.addBindingListener(bindingListener);
     }
 
     /**
@@ -150,7 +143,8 @@ public class ContactPanel extends javax.swing.JPanel {
 
         jLabel10.setText("Email");
 
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, sourceValidator1, org.jdesktop.beansbinding.ELProperty.create("${email}"), jTextField8, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, contact2, org.jdesktop.beansbinding.ELProperty.create("${mail}"), jTextField8, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        binding.setValidator(sourceValidator1);
         bindingGroup.addBinding(binding);
 
         jTextField8.addActionListener(new java.awt.event.ActionListener() {

@@ -276,8 +276,11 @@
                 </Component>
                 <Component class="javax.swing.JTextField" name="jTextField8">
                   <BindingProperties>
-                    <BindingProperty name="text" source="sourceValidator1" sourcePath="${email}" target="jTextField8" targetPath="text" updateStrategy="0" immediately="false">
+                    <BindingProperty name="text" source="contact2" sourcePath="${mail}" target="jTextField8" targetPath="text" updateStrategy="0" immediately="false">
                       <BindingParameter name="javax.swing.binding.ParameterKeys.TEXT_CHANGE_STRATEGY" value="javax.swing.binding.TextChangeStrategy.ON_TYPE"/>
+                      <Property name="validator" type="org.jdesktop.beansbinding.Validator" editor="org.netbeans.modules.form.ComponentChooserEditor">
+                        <ComponentRef name="sourceValidator1"/>
+                      </Property>
                     </BindingProperty>
                   </BindingProperties>
                   <Events>

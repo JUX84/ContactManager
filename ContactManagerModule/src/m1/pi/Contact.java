@@ -67,15 +67,14 @@ public class Contact implements Serializable {
         propertySupport.firePropertyChange("sex", oldValue, sex);
     }
     
-    
-    public String getMail() {
+     public String getMail() {
         return mail;
     }
     
-    public void setAge(String value) {
+    public void setMail(String value) {
         String oldValue = mail;
         mail = value;
-        propertySupport.firePropertyChange("mail", oldValue, mail);
+        propertySupport.firePropertyChange("sex", oldValue, mail);
     }
     
     public void addPropertyChangeListener(PropertyChangeListener listener) {

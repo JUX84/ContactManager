@@ -13,8 +13,8 @@ public class SourceValidator extends Validator<String> {
 
     @Override
     public Result validate(String value) {
-       if(value == null) 
-            return new Result(null, "Source must not be null");
+       if(value == null)
+            return new Result(null, "String must not be null");
         Pattern pattern = Pattern.compile(".+@.+\\.[a-z]+");
         Matcher matcher = pattern.matcher(value);
         if(matcher.find())

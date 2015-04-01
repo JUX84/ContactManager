@@ -5,6 +5,14 @@
  */
 package m1.pi;
 
+import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.UIManager;
+import org.jdesktop.beansbinding.AbstractBindingListener;
+import org.jdesktop.beansbinding.Binding;
+import org.jdesktop.beansbinding.BindingListener;
+import org.jdesktop.beansbinding.Validator;
+
 /**
  *
  * @author uapv1301804
@@ -16,6 +24,25 @@ public class ContactPanel extends javax.swing.JPanel {
      */
     public ContactPanel() {
         initComponents();
+        BindingListener bindingListener = new AbstractBindingListener() 
+        {
+            @Override
+            public void synced(Binding binding)
+            {
+                JTextField textField = (JTextField)binding.getTargetObject();
+                textField.setForeground(UIManager.getColor("Textfield.foreground"));
+                textField.setToolTipText("");
+            }
+            @Override
+            public void syncFailed(Binding binding, Binding.SyncFailure failure)
+            {
+                JTextField textField = (JTextField)binding.getTargetObject();
+                Validator.Result result = failure.getValidationResult();
+                textField.setForeground(Color.red);
+                textField.setToolTipText(result!=null?result.getDescription():"Sync failed");
+            }
+        } ;
+        bindingGroup.addBindingListener( bindingListener );
     }
 
     /**
@@ -32,6 +59,7 @@ public class ContactPanel extends javax.swing.JPanel {
         buttonGroup1 = new javax.swing.ButtonGroup();
         stringIntConverter1 = new m1.pi.StringIntConverter();
         contact2 = new m1.pi.Contact();
+        sourceValidator1 = new m1.pi.SourceValidator();
         jPanel1 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel3 = new javax.swing.JPanel();
@@ -122,7 +150,7 @@ public class ContactPanel extends javax.swing.JPanel {
 
         jLabel10.setText("Email");
 
-        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, contact2, org.jdesktop.beansbinding.ELProperty.create("${mail}"), jTextField8, org.jdesktop.beansbinding.BeanProperty.create("text"));
+        binding = org.jdesktop.beansbinding.Bindings.createAutoBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, sourceValidator1, org.jdesktop.beansbinding.ELProperty.create("${email}"), jTextField8, org.jdesktop.beansbinding.BeanProperty.create("text"));
         bindingGroup.addBinding(binding);
 
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
@@ -471,6 +499,7 @@ public class ContactPanel extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private m1.pi.MrMmeConverter mrMmeConverter1;
+    private m1.pi.SourceValidator sourceValidator1;
     private m1.pi.StringIntConverter stringIntConverter1;
     private org.jdesktop.beansbinding.BindingGroup bindingGroup;
     // End of variables declaration//GEN-END:variables

@@ -22,6 +22,8 @@ public class ContactPanel extends javax.swing.JPanel {
     /**
      * Creates new form ContactPanel
      */
+    private boolean ok = true;
+    
     public ContactPanel() {
         initComponents();
         BindingListener bindingListener = new AbstractBindingListener() 
@@ -29,10 +31,25 @@ public class ContactPanel extends javax.swing.JPanel {
             @Override
             public void synced(Binding binding)
             {
+                if (binding.getTargetObject() instanceof JTextField) {
+                    JTextField textField = (JTextField)binding.getTargetObject();
+                    textField.setForeground(UIManager.getColor("Textfield.foreground"));
+                    textField.setToolTipText("");
+                    ok = true;
+                }
             }
             @Override
             public void syncFailed(Binding binding, Binding.SyncFailure failure)
             {
+                if (binding.getTargetObject() instanceof JTextField) {
+                    JTextField textField = (JTextField)binding.getTargetObject();
+                    Validator.Result result = failure.getValidationResult();
+                    textField.setForeground(Color.red);
+                    textField.setToolTipText(result!=null?result.getDescription():"Sync failed");
+                    ok = false;
+                    if(textField.getText().isEmpty())
+                        ok = true;
+                }
             }
         } ;
         bindingGroup.addBindingListener(bindingListener);
@@ -501,6 +518,6 @@ public class ContactPanel extends javax.swing.JPanel {
     public boolean isOk() {
         if(jTextField1 == null || jTextField2 == null || jTextField3 == null)
             return false;
-        return !(jTextField1.getText()).isEmpty() && !(jTextField2.getText()).isEmpty() && !(jTextField3.getText()).isEmpty();
+        return !(jTextField1.getText()).isEmpty() && !(jTextField2.getText()).isEmpty() && !(jTextField3.getText()).isEmpty() && ok;
     }
 }

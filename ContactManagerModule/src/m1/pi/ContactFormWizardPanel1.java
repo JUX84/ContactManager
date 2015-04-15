@@ -69,7 +69,7 @@ public class ContactFormWizardPanel1 implements WizardDescriptor.ValidatingPanel
     @Override
     public void validate() throws WizardValidationException {
         if (!component.isOk())
-            throw new WizardValidationException(null, "First name, last name and age MUST be filled.", null);
+            throw new WizardValidationException(null, "First name, last name and age MUST be filled. (And the email must be valid)", null);
     }
 
 }

@@ -24,7 +24,7 @@ import org.openide.util.RequestProcessor;
         iconBase = "m1/pi/save.png",
         displayName = "#CTL_SaveAction"
 )
-@ActionReference(path = "Menu/File", position = 3333)
+@ActionReference(path = "Menu/File", position = 2)
 @Messages("CTL_SaveAction=Save")
 public final class SaveAction implements ActionListener {
 

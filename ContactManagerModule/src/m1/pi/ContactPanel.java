@@ -31,7 +31,7 @@ public class ContactPanel extends javax.swing.JPanel {
             @Override
             public void synced(Binding binding)
             {
-                if (binding.getTargetObject() instanceof JTextField) {
+                if (binding.getTargetObject() == jTextField8) {
                     JTextField textField = (JTextField)binding.getTargetObject();
                     textField.setForeground(UIManager.getColor("Textfield.foreground"));
                     textField.setToolTipText("");
@@ -41,7 +41,7 @@ public class ContactPanel extends javax.swing.JPanel {
             @Override
             public void syncFailed(Binding binding, Binding.SyncFailure failure)
             {
-                if (binding.getTargetObject() instanceof JTextField) {
+                if (binding.getTargetObject() == jTextField8) {
                     JTextField textField = (JTextField)binding.getTargetObject();
                     Validator.Result result = failure.getValidationResult();
                     textField.setForeground(Color.red);
@@ -518,6 +518,6 @@ public class ContactPanel extends javax.swing.JPanel {
     public boolean isOk() {
         if(jTextField1 == null || jTextField2 == null || jTextField3 == null)
             return false;
-        return !(jTextField1.getText()).isEmpty() && !(jTextField2.getText()).isEmpty() && !(jTextField3.getText()).isEmpty() && ok;
+        return (!(jTextField1.getText()).isEmpty() && !(jTextField2.getText()).isEmpty() && !(jTextField3.getText()).isEmpty() && (Integer.parseInt(jTextField3.getText()) != 0) && ok);
     }
 }

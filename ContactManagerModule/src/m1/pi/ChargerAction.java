@@ -24,7 +24,7 @@ import org.openide.util.RequestProcessor;
         iconBase = "m1/pi/charger.png",
         displayName = "#CTL_ChargerAction"
 )
-@ActionReference(path = "Menu/File", position = 3333)
+@ActionReference(path = "Menu/File", position = 1)
 @Messages("CTL_ChargerAction=Charger...")
 public final class ChargerAction implements ActionListener {
 

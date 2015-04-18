@@ -23,7 +23,7 @@ import org.openide.util.NbBundle.Messages;
         iconBase = "m1/pi/broom.png",
         displayName = "#CTL_ClearAction"
 )
-@ActionReference(path = "Menu/File", position = 1300)
+@ActionReference(path = "Menu/File", position = 0)
 @Messages("CTL_ClearAction=Clear")
 public final class ClearAction implements ActionListener {
 
